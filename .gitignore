@@ -16,3 +16,10 @@
 
 # Docker
 .docker-sync
+
+# Build artifacts
+/src/public/build
+
+# Coverage reports
+/src/coverage.xml
+/src/.phpunit.result.cache
