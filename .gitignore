@@ -1,0 +1,18 @@
+# Laravel
+/src/vendor
+/src/node_modules
+/src/.env
+/src/storage/*.key
+/src/public/hot
+/src/public/storage
+/src/storage/*.log
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+.DS_Store
+
+# Docker
+.docker-sync
