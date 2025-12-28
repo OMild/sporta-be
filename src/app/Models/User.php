@@ -12,6 +12,11 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
+    // Role constants
+    public const ROLE_SUPER_ADMIN = 'super_admin';
+    public const ROLE_VENUE_OWNER = 'venue_owner';
+    public const ROLE_PLAYER = 'player';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -21,6 +26,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'phone',
     ];
 
     /**
@@ -44,5 +51,25 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function isSuperAdmin(): bool
+    {
+        return $this->role === self::ROLE_SUPER_ADMIN;
+    }
+
+    public function isVenueOwner(): bool
+    {
+        return $this->role === self::ROLE_VENUE_OWNER;
+    }
+
+    public function isPlayer(): bool
+    {
+        return $this->role === self::ROLE_PLAYER;
+    }
+
+    public function hasRole(string $role): bool
+    {
+        return $this->role === $role;
     }
 }
