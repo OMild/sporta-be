@@ -38,7 +38,7 @@ class LoginController extends Controller
             } elseif ($user->isVenueOwner()) {
                 return redirect()->intended('/owner/dashboard');
             } else {
-                // For players, redirect to home or mobile app instruction
+                // For players, redirect to player home/lobby
                 return redirect()->intended('/');
             }
         }

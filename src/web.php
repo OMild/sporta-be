@@ -3,10 +3,18 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Player\HomeController as PlayerHomeController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Player home page (default)
+Route::get('/', [PlayerHomeController::class, 'index'])->name('player.home');
+
+// Player routes (public)
+Route::get('/venues/{venue}', [PlayerHomeController::class, 'showVenue'])->name('player.venue');
+Route::get('/rewards', [PlayerHomeController::class, 'rewards'])->name('player.rewards');
+
+// Player routes (auth optional - will show login prompt if not authenticated)
+Route::get('/schedule', [PlayerHomeController::class, 'schedule'])->name('player.schedule');
+Route::get('/profile', [PlayerHomeController::class, 'profile'])->name('player.profile');
 
 // Authentication routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
